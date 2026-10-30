@@ -7,13 +7,14 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - data:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-      - ./logs:/logs
+      - redis-single-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
     #配置文件启动
     command: redis-server /usr/local/etc/redis/redis.conf
 volumes:
-  data:
+  # redis-single-data 是 named volume，默认持久化，不会随 `docker-compose down` 自动删除
+  # 只有执行 `docker volume rm redis-data` 或 `docker-compose down -v` 才会彻底删除
+  redis-single-data:
 
 networks:
   docker-kit-network:
