@@ -1,6 +1,6 @@
 services:
   redis:
-    image: redis:8.8
+    image: registry.cn-hangzhou.aliyuncs.com/zaqbest/redis:8.8
     restart: always
     networks:
       - docker-kit-network
